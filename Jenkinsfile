@@ -1,52 +1,51 @@
-pipeline{
+pipeline {
     parameters{
         string defaultValue: "https://github.com/nogala/AndroidTools",
-            description: "Repository of Docker to build",
-            name: "REPO"
-
+                description: "Repository",
+                name: 'REPO'
         string defaultValue: "master",
-            description: "Branch of repo to build",
-            name: "BRANCH"
-
+                description: "Branch of repository",
+                name: 'BRANCH'
         booleanParam defaultValue: false,
-            description: "Deploy to dockerhub ?",
-            name: "DEPLOY"
+                description: "Deploy to dockerHub"
+        name: 'DEPLOY'
     }
-
     environment {
-        registry = "nogala/androidtest"
-        registyCredential= "dockerhub"
-        dockerimage= ""
+        registry = "nogala/dockertest"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
     }
-
-    agent none
-    stages{
-        stage ("Cloning Repo"){
+    agent any
+    stages {
+        stage('Cloning Git') {
+            steps {
+                git url: params.REPO , branch: params.BRANCH
+            }
+        }
+        stage('Building image') {
             steps{
-                script{
-                    git url: params.REPO, branch: params.BRANCH
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
-        stage ("Build image"){
+        stage('Deploy Image') {
             steps{
-                script{
-                    dokerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage ("Deploy Image"){
-            steps{
-                script{
-                    if (params.DEPLOY) {
-                        docker.withRegistry ('', registyCredential) {
+                script {
+                    if(params.DEPLOY) {
+                        docker.withRegistry('', registryCredential) {
                             dockerImage.push()
                         }
                     }
                     else {
-                        echo "not Deploy"
+                        echo "Not deploy"
                     }
                 }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
