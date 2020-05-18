@@ -7,8 +7,8 @@ pipeline {
                 description: "Branch of repository",
                 name: 'BRANCH'
         booleanParam defaultValue: false,
-                description: "Deploy to dockerHub"
-        name: 'DEPLOY'
+                description: "Deploy to dockerHub",
+                name: 'DEPLOY'
     }
     environment {
         registry = "nogala/dockertest"
