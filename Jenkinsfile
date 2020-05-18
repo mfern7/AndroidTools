@@ -23,7 +23,9 @@ pipeline{
     stages{
         stage ("Cloning Repo"){
             steps{
-                git url: params.REPO, branch: params.BRANCH
+                script{
+                    git url: params.REPO, branch: params.BRANCH
+                }
             }
         }
         stage ("Build image"){
