@@ -13,7 +13,7 @@ pipeline{
             name: "DEPLOY"
     }
 
-    environments{
+    environment {
         registry = "nogala/androidtest"
         registyCredential= "dockerhub"
         dockerimage= ""
