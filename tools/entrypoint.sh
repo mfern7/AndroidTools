@@ -18,7 +18,9 @@ else
     su_mt_user /opt/tools/android-sdk-update.sh ${1}
 fi
 
-mkdir -P /opt/gradle
-wget https://services.gradle.org/distributions/gradle-5.6.4-all.zip
-unzip -d /opt/gradle gradle-5.6.4-all.zip
-echo "PATH=$PATH:/opt/gradle/gradle-5.6.4/bin" >> ~/.bashrc
+wget https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
+unzip -d /opt/ gradle-5.6.4-bin.zip
+mv /opt/gradle-5.6.4 /opt/gradle
+echo "PATH=$PATH:/opt/gradle/bin" >> ~/.bashrc
+source ~/.bashrc
+update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
