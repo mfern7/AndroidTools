@@ -6,7 +6,9 @@ ENV ANDROID_SDK_HOME /opt/android-sdk-linux
 ENV ANDROID_SDK_ROOT /opt/android-sdk-linux
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV ANDROID_SDK /opt/android-sdk-linux
-
+ENV GRADLE_HOME /opt/gradle
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV MAVEN_HOME /usr/share/maven
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install required tools
