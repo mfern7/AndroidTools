@@ -6,12 +6,12 @@ pipeline {
         string defaultValue: "master",
                 description: "Branch of repository",
                 name: 'BRANCH'
-        booleanParam defaultValue: false,
+        booleanParam defaultValue: true,
                 description: "Deploy to dockerHub",
                 name: 'DEPLOY'
     }
     environment {
-        registry = "nogala/dockertest"
+        registry = "nogala/androidtest"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
