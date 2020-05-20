@@ -28,5 +28,4 @@ mv /opt/gradle-5.6.4 /opt/gradle
 rm gradle-5.6.4-bin.zip
 echo "PATH=$PATH:/opt/gradle/bin:/opt/firebase" >> ~/.bashrc
 source ~/.bashrc
-cd ~
 gem install fastlane bundle
