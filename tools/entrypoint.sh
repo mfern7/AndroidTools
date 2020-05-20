@@ -22,12 +22,13 @@ update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 mkdir -p /opt/firebase
 wget -o /opt/firebase/firebase_tools https://firebase.tools/bin/linux/latest
 chmod +x /opt/firebase/firebase_tools
-wget -o /opt/gradle-5.6.4-bin.zip https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
-unzip -d /opt/ /opt/gradle-5.6.4-bin.zip
+wget https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
+unzip -d /opt/ gradle-5.6.4-bin.zip
 mv /opt/gradle-5.6.4 /opt/gradle
-rm /opt/gradle-5.6.4-bin.zip
-gem install fastlane
-bundle update
-chmod +x /opt/firebase/firebase_tools
+rm gradle-5.6.4-bin.zip
 echo "PATH=$PATH:/opt/gradle/bin:/opt/firebase" >> ~/.bashrc
 source ~/.bashrc
+cd ~
+gem update
+gem install fastlane
+bundle update
