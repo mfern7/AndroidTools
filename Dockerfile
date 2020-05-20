@@ -58,3 +58,13 @@ WORKDIR /opt/android-sdk-linux
 RUN /opt/tools/entrypoint.sh built-in
 
 CMD /opt/tools/entrypoint.sh built-in
+
+RUN ["chmod", "+x", "/opt/tools/installRuby.sh"]
+
+RUN ["chmod", "+x", "/opt/tools/installfirebase.sh"]
+
+RUN /opt/tools/installRuby.sh
+
+RUN /opt/tools/installfirebase.sh
+
+WORKDIR /root
