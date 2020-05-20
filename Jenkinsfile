@@ -9,6 +9,9 @@ pipeline {
         booleanParam defaultValue: true,
                 description: "Deploy to dockerHub",
                 name: 'DEPLOY'
+        string defaultValue: BUILD_NUMBER,
+                description: "Version number",
+                name: 'VERSION'
     }
     environment {
         registry = "nogala/androidtest"
@@ -47,7 +50,7 @@ pipeline {
         }
         stage('Remove Unused docker image') {
             steps{
-                sh "docker rmi $registry:$BUILD_NUMBER"
+                sh "docker rmi $registry:$VERSION"
             }
         }
     }
