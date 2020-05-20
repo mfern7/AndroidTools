@@ -30,7 +30,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":$params.VERSION"
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline {
         }
         stage('Remove Unused docker image') {
             steps{
-                sh "docker rmi $registry:$VERSION"
+                sh "docker rmi $registry:$params.VERSION"
             }
         }
     }
